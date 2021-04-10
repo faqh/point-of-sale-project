@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from "react-redux";
-import { listMenu } from "../store/action/Product";
+import { getByCategory } from "../store/action/Product";
 
 
 const Menu = styled.li`
@@ -26,7 +26,8 @@ const Menu = styled.li`
 export default function ListMenu() {
     const [List] = useState([
         {
-            name: "All"
+          name: "All",
+          value: "All"
         },
         {
             name: "Breakfast",
@@ -42,21 +43,17 @@ export default function ListMenu() {
         },
     ])
     const dispatch = useDispatch();
-    const test = value => {
-        // dispatch(listMenu(value))
-        console.log(value)
+    const handleClickMenu = value => {
+    console.log(value)
+      dispatch(getByCategory(value))  
     }
     return (
         <ul>
             {List.map((item, index)=>
-                <Menu key={index} onClick={() => test(item.value)}>
+                <Menu key={index} onClick={() => handleClickMenu(item.value)}>
                     {item.name}
                 </Menu>
             )}
-            {/* <Menu>All</Menu>
-            <Menu>Breakfast</Menu>
-            <Menu>Dessert</Menu>
-            <Menu>Snacks</Menu> */}
         </ul>
     )
 }
