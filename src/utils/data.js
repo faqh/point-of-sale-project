@@ -31,7 +31,7 @@ export const products = [
         id: 5,
         name: "Waffle",
         img: require("../img/b-waffle.jpg"),
-        category: "breakfast",
+        category: "desert",
         price: 20000
     },    
     {

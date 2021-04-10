@@ -1,3 +1,4 @@
+// nama file pake camelCase kecuali komponent pake PascalCase
 export const addCart = id => {
     return {
         type: "ADD_TO_CART",
@@ -10,6 +11,12 @@ export const addCart = id => {
 //         payload: value
 //     }
 // }
+export const getByCategory= category => {
+  return {
+    type: "GET_BY_CATEGORY",
+    payload: category
+  }
+}
 export const inc = id => {
     return {
         type: "INCREMENT",

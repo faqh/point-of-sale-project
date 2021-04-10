@@ -35,6 +35,19 @@ const productReducer = (state = initialState, action) => {
         //             categories: [...state.categories, newMenuCategory]
         //         }
         //     }
+        case "GET_BY_CATEGORY":
+          const productsByCategory = payload === "All"
+            ? products
+            : products.filter(item => item.category === payload)
+          return {
+            ...state,
+            products: productsByCategory
+          }
+        case "GET_ALL":
+          return {
+            ...state,
+            products: products 
+          }
         case "INCREMENT":
             const oriPrice = state.products.find(item => item.id === payload).price
             const incCarts = state.carts.map(item => {
