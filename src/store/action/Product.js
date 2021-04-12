@@ -4,12 +4,12 @@ export const addCart = id => {
         payload: id
     }
 }
-// export const listMenu = value => {
-//     return{
-//         type: "MENU",
-//         payload: value
-//     }
-// }
+export const getByCategory = category => {
+    return {
+        type: "GET_BY_CATEGORY",
+        payload: category
+    }
+}
 export const inc = id => {
     return {
         type: "INCREMENT",

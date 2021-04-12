@@ -2,8 +2,7 @@ import { products } from '../../utils/data'
 
 const initialState = {
     products: products,
-    carts: [],
-    categories: []
+    carts: []
 }
 
 const productReducer = (state = initialState, action) => {
@@ -22,19 +21,17 @@ const productReducer = (state = initialState, action) => {
             } else {
                 return state
             }
-        // case "MENU":
-        //     const menuCategory = state.categories.find(item => item.category === payload)
-        //     const newMenuCategory = state.products.map(item => item.category === payload)
-        //     if (!menuCategory) {
-        //         return {
-        //             ...state   
-        //         }
-        //     } else {
-        //         return{
-        //             ...state,
-        //             categories: [...state.categories, newMenuCategory]
-        //         }
-        //     }
+        case "GET_BY_CATEGORY":
+            const productByCategory = payload === "all" ? products : products.filter(item => item.category === payload)
+            return{
+                ...state,
+                products: productByCategory
+            }
+        case "GET_ALL":
+            return{
+                ...state,
+                products: products
+            }
         case "INCREMENT":
             const oriPrice = state.products.find(item => item.id === payload).price
             const incCarts = state.carts.map(item => {

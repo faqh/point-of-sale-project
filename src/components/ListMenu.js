@@ -1,62 +1,68 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from "react-redux";
-import { listMenu } from "../store/action/Product";
+import { getByCategory } from '../store/action/Product'
+import { MdFreeBreakfast } from "react-icons/md";
+import { GiRoundStar, GiCupcake, GiPopcorn } from "react-icons/gi";
 
-
-const Menu = styled.li`
-    height: 2rem;
+const Menu = styled.li.attrs(() =>({tabIndex:0}))`
+    height: 2.5rem;
     display: flex;
     align-items: center;
     padding-left: 1rem;
     position: relative;
     color: #B2B2B2;
     cursor: pointer;
-    font-weight: medium;
+    font-weight: light;
     font-size: 1.2rem;
+    outline: none;
     &:not(:last-child){
         margin-bottom: 0.5rem;
     }
-    &:nth-child(1){
+    &.active{
         color: ${props => props.theme.primary};
-    font-weight: bold;
-        
+        font-weight: bold;
+        outline: none;
     }
 `
 export default function ListMenu() {
     const [List] = useState([
         {
-            name: "All"
+            name: "All Categories",
+            value: "all",
+            img: <GiRoundStar />
         },
         {
             name: "Breakfast",
-            value: "breakfast"
+            value: "breakfast",
+            img: <MdFreeBreakfast />
         },
         {
             name: "Desert",
-            value: "desert"
+            value: "dessert",
+            img: <GiCupcake />
         },
         {
             name: "Snacks",
-            value: "snack"
+            value: "snack",
+            img: <GiPopcorn />
         },
     ])
     const dispatch = useDispatch();
-    const test = value => {
-        // dispatch(listMenu(value))
-        console.log(value)
+    const [toggleState, setToggleState] = useState(0);
+    const handleClickMenu = (value, index) => {
+        dispatch(getByCategory(value))
+        setToggleState(index)
     }
     return (
         <ul>
             {List.map((item, index)=>
-                <Menu key={index} onClick={() => test(item.value)}>
-                    {item.name}
+                <Menu key={index} className={toggleState === index ? `active` : ``} onClick={() => handleClickMenu(item.value, index)}>
+                    {item.img}
+                    <p style={{marginLeft: "10px"}}>{item.name}</p>
                 </Menu>
+                
             )}
-            {/* <Menu>All</Menu>
-            <Menu>Breakfast</Menu>
-            <Menu>Dessert</Menu>
-            <Menu>Snacks</Menu> */}
         </ul>
     )
 }

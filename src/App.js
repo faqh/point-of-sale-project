@@ -71,7 +71,6 @@ const SecondCartContainer = styled.div`
 function App() {
   const products = useSelector(state => state.product.products)
   const carts = useSelector(state => state.product.carts)
-  const menu = useSelector(state =>   state.product.categories)
   return (
     <ThemeProvider theme={theme}>
       <Container>
