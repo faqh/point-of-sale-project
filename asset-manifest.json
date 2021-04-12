@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/point-of-sale-project/static/css/main.c232d1fa.chunk.css",
-    "main.js": "/point-of-sale-project/static/js/main.a1997575.chunk.js",
-    "main.js.map": "/point-of-sale-project/static/js/main.a1997575.chunk.js.map",
+    "main.js": "/point-of-sale-project/static/js/main.106ae5ff.chunk.js",
+    "main.js.map": "/point-of-sale-project/static/js/main.106ae5ff.chunk.js.map",
     "runtime-main.js": "/point-of-sale-project/static/js/runtime-main.f762fd26.js",
     "runtime-main.js.map": "/point-of-sale-project/static/js/runtime-main.f762fd26.js.map",
     "static/js/2.86e52147.chunk.js": "/point-of-sale-project/static/js/2.86e52147.chunk.js",
@@ -29,6 +29,6 @@
     "static/js/runtime-main.f762fd26.js",
     "static/js/2.86e52147.chunk.js",
     "static/css/main.c232d1fa.chunk.css",
-    "static/js/main.a1997575.chunk.js"
+    "static/js/main.106ae5ff.chunk.js"
   ]
 }
