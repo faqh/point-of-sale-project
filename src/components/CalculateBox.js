@@ -54,7 +54,7 @@ export default function CalculateBox() {
         setPay(e.target.value)
     }
     const calculateChange = () => {
-        if (pay > total) {
+        if (pay >= total) {
             setChange(pay - total)
         }
     }
