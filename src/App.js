@@ -1,10 +1,11 @@
+import React, { useContext } from "react";
+import { DataContext } from "./context/DataContext";
 import ProductCard from './components/ProductCard'
 import CardItem from './components/CardItem'
 import ListMenu from './components/ListMenu'
 import CalculateBox from './components/CalculateBox'
 import Account from './components/Account'
 import { Scrollbars } from "react-custom-scrollbars-2";
-import { useSelector } from "react-redux";
 import styled, { ThemeProvider } from "styled-components";
 import * as theme from "./styles/theme";
 
@@ -69,17 +70,14 @@ const SecondCartContainer = styled.div`
 `
 
 function App() {
-  const products = useSelector(state => state.product.products)
-  const carts = useSelector(state => state.product.carts)
+  const {products} = useContext(DataContext)
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
         <MenuContainer>
           <ListMenuContainer>
-            {/* {products.filter(item =>  */}
               <ListMenu/>
-
-            {/* // )} */}
           </ListMenuContainer>
           <AccountContainer>
             <Account />
@@ -88,7 +86,7 @@ function App() {
         <Test>
           <Scrollbars>
             <ProductContainer>
-              {products.map(product => 
+              {products.products.map(product => 
                 <ProductCard data-simplebar key={product.id} item={product}/>
                 )}
             </ProductContainer>
@@ -96,12 +94,11 @@ function App() {
         </Test>
         <MainCartContainer>
           <FirstCartContainer>
-            <Scrollbars>
-            {/* {carts.length > 8 ? <OverScroll>{carts.map(item => <CardItem key={item.id} item={item}/>)}</OverScroll> : <OverHidden>{carts.map(item => <CardItem key={item.id} item={item}/>)}</OverHidden>} */}
-            <p style={{fontWeight: 'bold', textAlign: 'left', marginBottom: '1rem'}}>{carts ? `Order Carts (${carts.length})` : ``}</p>
-            {carts.map(item => 
-              <CardItem key={item.id} item={item}/>              
-            )}
+            <Scrollbars>            
+              <p style={{fontWeight: 'bold', textAlign: 'left', marginBottom: '1rem'}}>{products.carts ? `Order Carts (${products.carts.length})` : ``}</p>
+              {products.carts.map(item => 
+                <CardItem key={item.id} item={item}/>              
+              )}
             </Scrollbars>
           </FirstCartContainer>
           <SecondCartContainer>

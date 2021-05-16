@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 import { addCart } from "../store/action/Product";
 
 const Card = styled.div`
@@ -32,9 +34,9 @@ const CardDesc = styled.p`
     font-weight: bold;
 
 `
-
 export default function ProductCard({ item }) {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
+    const {dispatch} = useContext(DataContext)
     const addToCart = id => {
         dispatch(addCart(id))
     }

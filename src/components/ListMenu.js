@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { DataContext } from "../context/DataContext";
 import styled from 'styled-components'
-import { useDispatch } from "react-redux";
 import { getByCategory } from '../store/action/Product'
 import { MdFreeBreakfast } from "react-icons/md";
 import { GiRoundStar, GiCupcake, GiPopcorn } from "react-icons/gi";
@@ -48,7 +48,8 @@ export default function ListMenu() {
             img: <GiPopcorn />
         },
     ])
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
+    const {dispatch} = useContext(DataContext)
     const [toggleState, setToggleState] = useState(0);
     const handleClickMenu = (value, index) => {
         dispatch(getByCategory(value))

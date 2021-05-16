@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Counter from './Counter'
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useContext } from "react";
+import { DataContext } from "../context/DataContext";
+// import { useDispatch } from "react-redux";
 import { inc, dec, RemoveCart } from "../store/action/Product";
 
 
@@ -38,7 +39,8 @@ const Price = styled.div`
 
 export default function CardItem({ item }) {
     const [Count, setCount] = useState(1)
-    const dispatch = useDispatch();
+    const {dispatch} = useContext(DataContext)
+    // const dispatch = useDispatch();
     const increment = id => {
         setCount(Count + 1)
         dispatch(inc(id))

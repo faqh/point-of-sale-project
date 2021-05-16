@@ -1,11 +1,4 @@
-import { products } from '../../utils/data'
-
-const initialState = {
-    products: products,
-    carts: []
-}
-
-const productReducer = (state = initialState, action) => {
+export const productReducer = (state, action) => {
     const { type, payload } = action
     switch(type){
         default:
@@ -22,7 +15,7 @@ const productReducer = (state = initialState, action) => {
                 return state
             }
         case "GET_BY_CATEGORY":
-            const productByCategory = payload === "all" ? products : products.filter(item => item.category === payload)
+            const productByCategory = payload === "all" ? state : state.products.filter(item => item.category === payload)
             return{
                 ...state,
                 products: productByCategory
@@ -30,7 +23,7 @@ const productReducer = (state = initialState, action) => {
         case "GET_ALL":
             return{
                 ...state,
-                products: products
+                products: state
             }
         case "INCREMENT":
             const oriPrice = state.products.find(item => item.id === payload).price
@@ -76,5 +69,3 @@ const productReducer = (state = initialState, action) => {
             }
     }
 }
-
-export default productReducer

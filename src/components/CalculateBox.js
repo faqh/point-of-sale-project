@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { DataContext } from "../context/DataContext";
 import styled from 'styled-components'
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
 import Button from './Button'
 import { resetCart } from '../store/action/Product';
 
@@ -45,9 +46,12 @@ const BtnBox = styled.div`
 `
 
 export default function CalculateBox() {
-    const dispatch = useDispatch()
-    const Order = useSelector(state => state.product.carts)
-    const total = Order.reduce((totalPrice, current) => totalPrice + current.price, 0)
+    // const dispatch = useDispatch()
+    // const Order = useSelector(state => state.product.carts)
+    const Order = useContext(DataContext)
+    const {dispatch} = useContext(DataContext)
+    // console.log(Order)
+    const total = Order.products.carts.reduce((totalPrice, current) => totalPrice + current.price, 0)
     const [pay, setPay] = useState("")
     const [change, setChange] = useState("")
     const handleChange = e => {
